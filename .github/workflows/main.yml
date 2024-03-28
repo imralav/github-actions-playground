@@ -32,3 +32,8 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - uses: imralav/greet-gh-action@main
+        with:
+          who-to-greet: 'Mona the Octocat'
+          who-not-to-greet: "Your mom"
