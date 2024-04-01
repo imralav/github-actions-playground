@@ -15,22 +15,37 @@ jobs:
           echo Previous commit SHA ${{ github.event.before }}
           echo Current commit SHA ${{ github.sha }}
           echo After commit SHA ${{ github.event.after }}
-          CHANGES_FOLDER_1=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'folder1/*')
-          CHANGES_FOLDER_2=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'folder2/*')
-          echo "changesInFolder1=$CHANGES_FOLDER_1" >> "$GITHUB_OUTPUT"
-          echo "changesInFolder2=$CHANGES_FOLDER_2" >> "$GITHUB_OUTPUT"
+
+          FOLDER_CHANGES_1=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} -- 'folder1/*')
+          if [ -n "$FOLDER_CHANGES_1" ]; then
+            echo "Changes were made in the folder 1 $FOLDER_CHANGES_1"
+            echo "::set-output name=changesInFolder1::true"
+          else
+            echo "No changes were made in the folder"
+            echo "::set-output name=changesInFolder1::false"
+          fi
+          
+          
+          FOLDER_CHANGES_2=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} -- 'folder2/*')
+          if [ -n "$FOLDER_CHANGES_2 ]; then
+            echo "Changes were made in the folder 2 $FOLDER_CHANGES_2"
+            echo "::set-output name=changesInFolder2::true"
+          else
+            echo "No changes were made in the folder"
+            echo "::set-output name=changesInFolder2::false"
+          fi
         id: check_changes
   in_folder1:
     needs: changes_checker
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: ${{ needs.changes_checker.outputs.changesInFolder1 }}
     steps:
       - name: Takie tam 1
         run: echo Coś zmieniło się w folderze 1
   in_folder2:
     needs: changes_checker
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: ${{ needs.changes_checker.outputs.changesInFolder2 }}
     steps:
       - name: Takie tam 2
         run: echo Coś zmieniło się w folderze 2
