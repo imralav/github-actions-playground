@@ -10,8 +10,6 @@ jobs:
         changesInFolder2: ${{ steps.check_changes.outputs.changesInFolder2 }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Sprawdz czy w folderze 1 i 2 były zmiany
         run: |
           echo Previous commit SHA ${{ github.event.before }}
@@ -21,20 +19,20 @@ jobs:
           FOLDER_CHANGES_1=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} -- 'folder1/*')
           if [ -n "$FOLDER_CHANGES_1" ]; then
             echo "Changes were made in the folder 1 $FOLDER_CHANGES_1"
-            echo "::set-output name=changesInFolder1::true"
+            echo "changesInFolder1=true" >> "$GITHUB_OUTPUT"
           else
             echo "No changes were made in the folder"
-            echo "::set-output name=changesInFolder1::false"
+            echo "changesInFolder1=false" >> "$GITHUB_OUTPUT"
           fi
           
           
           FOLDER_CHANGES_2=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} -- 'folder2/*')
           if [ -n "$FOLDER_CHANGES_2 ]; then
             echo "Changes were made in the folder 2 $FOLDER_CHANGES_2"
-            echo "::set-output name=changesInFolder2::true"
+            echo "changesInFolder2=true" >> "$GITHUB_OUTPUT"
           else
             echo "No changes were made in the folder"
-            echo "::set-output name=changesInFolder2::false"
+            echo "changesInFolder2=false" >> "$GITHUB_OUTPUT"
           fi
         id: check_changes
   in_folder1:
