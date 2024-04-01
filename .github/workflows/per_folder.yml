@@ -27,7 +27,7 @@ jobs:
             echo "changesInFolder1=false" >> "$GITHUB_OUTPUT"
           fi
           FOLDER_CHANGES_2=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} -- 'folder2/*')
-          if [ -n "$FOLDER_CHANGES_2 ]; then
+          if [ -n "$FOLDER_CHANGES_2" ]; then
             echo "Changes were made in the folder 2 $FOLDER_CHANGES_2"
             echo "changesInFolder2=true" >> "$GITHUB_OUTPUT"
           else
