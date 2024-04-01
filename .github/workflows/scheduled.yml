@@ -1,7 +1,7 @@
 name: Cyklicznie
 on:
   schedule:
-  - cron: 0/5 12 * * *
+  - cron: '*/5 * * * *'
 jobs:
   simple_echo:
     runs-on: ubuntu-latest
