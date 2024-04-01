@@ -5,9 +5,8 @@ concurrency:
 on:
   workflow_dispatch
 jobs:
-  deployuj_go:
+  buduj_go:
     runs-on: ubuntu-latest
-    environment: prod
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,6 +17,16 @@ jobs:
         with:
           # Upload entire repository
           path: 'zrodelka_pod_gh_pages/'
+  deployuj_go:
+    needs: buduj_go
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
