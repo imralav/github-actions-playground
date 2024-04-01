@@ -20,7 +20,9 @@ jobs:
           echo Current commit SHA ${{ github.sha }}
           echo After commit SHA ${{ github.event.after }}
           CHANGES_FOLDER_1=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'folder1/*')
+          echo $CHANGES_FOLDER_1
           CHANGES_FOLDER_2=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'folder2/*')
+          echo $CHANGES_FOLDER_2
           echo "changesInFolder1=$CHANGES_FOLDER_1" >> "$GITHUB_OUTPUT"
           echo "changesInFolder2=$CHANGES_FOLDER_2" >> "$GITHUB_OUTPUT"
   in_folder1:
