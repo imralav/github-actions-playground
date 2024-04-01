@@ -1,0 +1,17 @@
+name: Inny job per folder w którym jest zmiana
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  in_folder1:
+    runs-on: ubuntu-latest
+    if: ${{ zmiany w folderze 1 }}
+    steps:
+      - name: Takie tam 1
+        run: echo Coś zmieniło się w folderze 1 ${{ toJSON(github.event) }}
+  in_folder2:
+    runs-on: ubuntu-latest
+    if: ${{ zmiany w folderze 2 }}
+    steps:
+      - name: Takie tam 2
+        run: echo Coś zmieniło się w folderze 2 ${{ toJSON(github.event) }}
