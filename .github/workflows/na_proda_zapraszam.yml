@@ -1,0 +1,9 @@
+name: Ram pam pam pam pam pam pam
+on:
+  workflow_dispatch
+jobs:
+  deployuj_go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: sanity check
+        run: echo "Siema"
