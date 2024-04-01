@@ -1,6 +1,8 @@
 name: Test matrixów
 on:
   push
+env:
+  NAZWISKO: Maniania
 jobs:
   robota_z_macierza_robotnikow:
     strategy:
@@ -9,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PRintujemy imiona
-        run: echo Witaj, ${{ matrix.imiona }}! A teraz do roboty!
+        run: echo Witaj, ${{ matrix.imiona }} ${{ env.NAZWISKO }}! A teraz do roboty!
   
