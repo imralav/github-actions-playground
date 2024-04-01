@@ -5,15 +5,38 @@ on:
 env:
   ZMIANY: ${{ toJSON(github.event) }}
 jobs:
-  in_folder1:
+  changes_checker:
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    outputs:
+        changesInFolder1: ${{ steps.check_changes.outputs.changesInFolder1 }}
+        changesInFolder2: ${{ steps.check_changes.outputs.changesInFolder2 }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sprawdz czy w folderze 1 i 2 były zmiany
+        run: |
+          echo All changes: ${{ env.ZMIANY }}
+          echo Previous commit SHA ${{ github.event.before }}
+          echo Current commit SHA ${{ github.sha }}
+          echo After commit SHA ${{ github.event.after }}
+          CHANGES_FOLDER_1=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'folder1/*')
+          CHANGES_FOLDER_2=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'folder2/*')
+          echo "changesInFolder1=$CHANGES_FOLDER_1" >> "$GITHUB_OUTPUT"
+          echo "changesInFolder2=$CHANGES_FOLDER_2" >> "$GITHUB_OUTPUT"
+  in_folder1:
+    needs: changes_checker
+    runs-on: ubuntu-latest
+    if: needs.changes_checker.outputs.changesInFolder1 != ''
+    env:
+      CHANGES: ${{ needs.changes_checker.outputs.changesInFolder1 }}
     steps:
       - name: Takie tam 1
-        run: echo Coś zmieniło się w folderze 1 $ZMIANY
+        run: echo Coś zmieniło się w folderze 1 $CHANGES
   in_folder2:
+    needs: changes_checker
     runs-on: ubuntu-latest
-    if: ${{ always() }}
+    if: needs.changes_checker.outputs.changesInFolder2 != ''
+    env:
+      CHANGES: ${{ needs.changes_checker.outputs.changesInFolder2 }}
     steps:
       - name: Takie tam 2
-        run: echo Coś zmieniło się w folderze 2 $ZMIANY
+        run: echo Coś zmieniło się w folderze 2 $CHANGES
