@@ -10,6 +10,8 @@ jobs:
         changesInFolder2: ${{ steps.check_changes.outputs.changesInFolder2 }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Sprawdz czy w folderze 1 i 2 były zmiany
         run: |
           echo Previous commit SHA ${{ github.event.before }}
