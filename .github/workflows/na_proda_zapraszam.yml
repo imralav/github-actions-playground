@@ -1,9 +1,13 @@
 name: Ram pam pam pam pam pam pam
+concurrency:
+  group: production
+  cancel-in-progress: true
 on:
   workflow_dispatch
 jobs:
   deployuj_go:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
       - name: sanity check
         run: echo "Siema"
