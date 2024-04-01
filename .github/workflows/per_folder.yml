@@ -38,14 +38,14 @@ jobs:
   in_folder1:
     needs: changes_checker
     runs-on: ubuntu-latest
-    if: ${{ needs.changes_checker.outputs.changesInFolder1 }}
+    if: ${{ fromJSON(needs.changes_checker.outputs.changesInFolder1) }}
     steps:
       - name: Takie tam 1
         run: echo Coś zmieniło się w folderze 1
   in_folder2:
     needs: changes_checker
     runs-on: ubuntu-latest
-    if: ${{ needs.changes_checker.outputs.changesInFolder2 }}
+    if: ${{ fromJSON(needs.changes_checker.outputs.changesInFolder2) }}
     steps:
       - name: Takie tam 2
         run: echo Coś zmieniło się w folderze 2
