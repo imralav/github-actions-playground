@@ -1,0 +1,9 @@
+on:
+  schedule:
+  - cron: '5 * * * *'
+jobs:
+  simple_echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Just echo
+        run: echo Odpalam w 5 minucie każdej godziny i każdego dnia
