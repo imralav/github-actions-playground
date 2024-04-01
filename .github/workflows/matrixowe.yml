@@ -1,0 +1,13 @@
+name: Test matrixów
+on:
+  push
+jobs:
+  robota_z_macierza_robotnikow:
+    strategy:
+      matrix:
+        imiona: [Tomasz, Roman, Przemek]
+    runs-on: ubuntu-latest
+    steps:
+      - name: PRintujemy imiona
+        run: echo Witaj, ${{ matrix.imiona }}! A teraz do roboty!
+  
