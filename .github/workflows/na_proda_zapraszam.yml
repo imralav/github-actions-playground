@@ -21,7 +21,7 @@ jobs:
     needs: buduj_go
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: prodzisz
       url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       pages: write
