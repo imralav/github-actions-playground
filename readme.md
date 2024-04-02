@@ -1,1 +1,1 @@
-[![MAIN](https://github.com/imralav/github-actions-playground/actions/workflows/main.yml/badge.svg)](https://github.com/imralav/github-actions-playground/actions/workflows/main.yml)
+[![Ram pam pam pam pam pam pam](https://github.com/imralav/github-actions-playground/actions/workflows/na_proda_zapraszam.yml/badge.svg)](https://github.com/imralav/github-actions-playground/actions/workflows/na_proda_zapraszam.yml)
