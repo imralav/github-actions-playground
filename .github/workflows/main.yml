@@ -1,48 +1,10 @@
 name: MAIN
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  create:
+  delete:
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-env:
-  PRAWILNIAK: ${{ true }}
-  STRINGOWY: ${{ '7' >= '11' }}
-  JSONOWY: ${{ fromJSON('7') >= fromJSON('11') }}
-  W_MAINIE: ${{ contains( github.ref, 'main') }}
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  echo:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world! $PRAWILNIAK czy ${{ env.PRAWILNIAK }}? $STRINGOWY / ${{env.STRINGOWY}} czy $JSONOWY / ${{env.JSONOWY}}?
-
-      # Runs a single command using the runners shell
-      - name: Sprawdzenie czy jestesmy w mainie
-        run: echo Czy jesteśmy w mainie z enva? $W_MAINIE / ${{ env.W_MAINIE }} / ${{ contains (github.ref, 'main') }}
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
-      - uses: imralav/greet-gh-action@main
-        with:
-          who-to-greet: 'Mona the Octocat'
-          who-not-to-greet: "Your mom"
+      - run: echo Dodano lub usunieto git branch albo tag
