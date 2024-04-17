@@ -16,9 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print a greeting
-        run: echo "Cześć co u Ciebie?"
+        id: output-source
+        run: |
+          echo "Cześć co u Ciebie?"
+          echo "IMIE=Tomasz" >> "$GITHUB_OUTPUT"
       - name: check node version
-        run: node --version
+        env:
+          IMIE: ${{steps.output-source.outputs.IMIE}}
+        run: |
+          node --version
+          echo "A spoko. A u Ciebie $IMIE?"
       - name: check npm version
         run: npm --version
   echo2:
