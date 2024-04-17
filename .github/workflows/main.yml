@@ -1,9 +1,8 @@
 name: MAIN
 on:
-  create:
-  delete:
-  schedule:
-    - cron: '*/5 13/15 2/3 12 *'
+  pull_request:
+#  schedule:
+#    - cron: '*/5 13/15 2/3 12 *'
   workflow_dispatch:
 
 jobs:
