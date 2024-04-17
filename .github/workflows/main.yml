@@ -11,7 +11,7 @@ env:
 jobs:
   echo:
     name: Odpala tylko gdy RUN_B
-    if: ${{ env.RUN_B }}
+    #if: ${{ env.RUN_B }}
     runs-on: ubuntu-latest
     steps:
       - name: Print a greeting
@@ -22,12 +22,12 @@ jobs:
         run: npm --version
   echo2:
     name: Odpala tylko gdy RUN_A
-    if: ${{ env.RUN_A }}
+    #if: ${{ env.RUN_A }}
     runs-on: ubuntu-latest
     steps:
-      - name: Print a greeting
-        run: echo "Cześć co u Ciebie?"
-      - name: check node version
-        run: node --version
-      - name: check npm version
-        run: npm --version
+      - name: debugnijmy
+        run: echo "::debug::Set the Octocat variable"
+      - name: dodajmy env variabla
+        run: echo "RUN_C=true" >> "$GITHUB_ENV"
+      - name: i od razu go odczytajmy
+        run: echo $RUN_C
