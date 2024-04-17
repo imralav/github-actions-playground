@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: debugnijmy
-        run: echo "::debug::Set the Octocat variable"
+        run: echo "::error file=appka.js,line=12::Set the Octocat variable"
       - name: dodajmy env variabla
         run: echo "RUN_C=true" >> "$GITHUB_ENV"
       - name: i od razu go odczytajmy
