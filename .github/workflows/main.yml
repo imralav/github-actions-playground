@@ -10,4 +10,5 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Cześć co u Ciebie?"
+      - name: Print a greeting
+        run: echo "Cześć co u Ciebie?"
