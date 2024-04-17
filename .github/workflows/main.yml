@@ -4,6 +4,7 @@ on:
   delete:
   schedule:
     - cron: '*/5 13/15 2/3 12 *'
+  workflow_dispatch:
 
 jobs:
   echo:
