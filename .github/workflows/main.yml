@@ -1,6 +1,8 @@
 name: MAIN
 on:
   pull_request:
+    branches:
+      - '!main'
 #  schedule:
 #    - cron: '*/5 13/15 2/3 12 *'
   workflow_dispatch:
@@ -9,4 +11,4 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo Dodano lub usunieto git branch albo tag ($GITHUB_SHA / $GITHUB_REF)
+      - run: echo "Cześć co u Ciebie?"
