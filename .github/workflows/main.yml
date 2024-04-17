@@ -44,5 +44,5 @@ jobs:
       - name: I odpalenie skryptu
         env:
           SIEMANO: no cześć
-        run: ./skrypt.sh
         shell: bash
+        run: ./skrypt.sh
