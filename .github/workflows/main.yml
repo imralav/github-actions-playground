@@ -12,3 +12,7 @@ jobs:
     steps:
       - name: Print a greeting
         run: echo "Cześć co u Ciebie?"
+      - name: check node version
+        run: node --version
+      - name: check npm version
+        run: npm --version
