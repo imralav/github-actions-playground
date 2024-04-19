@@ -1,0 +1,14 @@
+{
+  "name": "@imralav/github-actions-playground",
+  "version": "1.0.0",
+  "description": "[![Ram pam pam pam pam pam pam](https://github.com/imralav/github-actions-playground/actions/workflows/na_proda_zapraszam.yml/badge.svg)](https://github.com/imralav/github-actions-playground/actions/workflows/na_proda_zapraszam.yml)",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "@imralav:registry": "https://npm.pkg.github.com/"
+  }
+}
