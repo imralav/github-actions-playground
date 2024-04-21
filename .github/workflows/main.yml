@@ -46,3 +46,7 @@ jobs:
           SIEMANO: no cześć
         shell: bash
         run: ./skrypt.sh
+      - name: Pare domyślnich env variabli
+        run: |
+          echo "Aktor: $GITHUB_ACTOR"
+          echo "Akcja: $GITHUB_ACTION"
